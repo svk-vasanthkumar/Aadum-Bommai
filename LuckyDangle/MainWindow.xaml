@@ -1,0 +1,44 @@
+<Window x:Class="LuckyDangle.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lucky Dangle"
+        Height="540" 
+        Width="340"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        WindowStartupLocation="Manual">
+    <Grid x:Name="RootGrid" ClipToBounds="False">
+        <!-- Canvas for rendering the Verlet rope with zero allocation -->
+        <Canvas x:Name="RopeCanvas" IsHitTestVisible="False" />
+
+        <!-- Floating Charm Container with dynamic tilt and drag handle -->
+        <Canvas x:Name="OverlayCanvas" ClipToBounds="False">
+            <Border x:Name="CharmContainer"
+                    Width="70" Height="70"
+                    Cursor="Hand"
+                    Background="Transparent"
+                    MouseDown="OnCharmMouseDown"
+                    MouseMove="OnCharmMouseMove"
+                    MouseUp="OnCharmMouseUp">
+                <Border.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform x:Name="CharmRotate" Angle="0" CenterX="35" CenterY="10" />
+                        <TranslateTransform x:Name="CharmTranslate" X="0" Y="0" />
+                    </TransformGroup>
+                </Border.RenderTransform>
+
+                <!-- Vector Charm Visual Surface -->
+                <Grid x:Name="CharmVisualGrid" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Path x:Name="CharmPath"
+                          Stretch="Uniform"
+                          Width="56" Height="56"
+                          HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Grid>
+            </Border>
+        </Canvas>
+    </Grid>
+</Window>

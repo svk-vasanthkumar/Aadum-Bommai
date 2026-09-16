@@ -1,0 +1,6 @@
+{
+  "name": "Lucky Dangle",
+  "description": "A lightweight Windows desktop companion application featuring realistic physics-simulated lucky charms hanging from the top of the screen.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

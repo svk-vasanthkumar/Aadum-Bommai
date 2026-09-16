@@ -1,0 +1,104 @@
+<Window x:Class="LuckyDangle.UI.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lucky Dangle — Settings"
+        Height="520" Width="440"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#0F172A"
+        Foreground="#F8FAFC">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#F8FAFC" />
+            <Setter Property="FontFamily" Value="Segoe UI, -apple-system, sans-serif" />
+        </Style>
+        <Style TargetType="Slider">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,4,0,8" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="Lucky Dangle Settings" FontSize="20" FontWeight="Bold" />
+            <TextBlock Text="Customize your desktop charm and physics response." FontSize="13" Foreground="#94A3B8" Margin="0,4,0,0" />
+        </StackPanel>
+
+        <!-- Settings Controls Scrollable Area -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Spacing="16">
+                <!-- Charm Selection -->
+                <TextBlock Text="SELECT CHARM" FontSize="11" FontWeight="Bold" Foreground="#38BDF8" />
+                <ComboBox x:Name="CharmComboBox" 
+                          DisplayMemberPath="DisplayName" 
+                          SelectedValuePath="Id" 
+                          Background="#1E293B" 
+                          Foreground="#0F172A" 
+                          Padding="8,6" />
+
+                <Border Background="#1E293B" CornerRadius="8" Padding="12" Margin="0,4,0,12">
+                    <TextBlock x:Name="CharmMeaningText" 
+                               Text="Protects against envy and wards off negative energy." 
+                               FontSize="12" Foreground="#CBD5E1" TextWrapping="Wrap" />
+                </Border>
+
+                <!-- Rope Length -->
+                <DockPanel LastChildFill="False">
+                    <TextBlock Text="Rope Length" FontSize="13" FontWeight="SemiBold" DockPanel.Dock="Left" />
+                    <TextBlock x:Name="RopeLengthVal" Text="280 px" FontSize="13" Foreground="#94A3B8" DockPanel.Dock="Right" />
+                </DockPanel>
+                <Slider x:Name="RopeLengthSlider" Minimum="140" Maximum="460" Value="280" TickFrequency="10" />
+
+                <!-- Gravity -->
+                <DockPanel LastChildFill="False">
+                    <TextBlock Text="Gravity Strength" FontSize="13" FontWeight="SemiBold" DockPanel.Dock="Left" />
+                    <TextBlock x:Name="GravityVal" Text="0.38" FontSize="13" Foreground="#94A3B8" DockPanel.Dock="Right" />
+                </DockPanel>
+                <Slider x:Name="GravitySlider" Minimum="0.10" Maximum="0.90" Value="0.38" />
+
+                <!-- Damping -->
+                <DockPanel LastChildFill="False">
+                    <TextBlock Text="Air Resistance / Damping" FontSize="13" FontWeight="SemiBold" DockPanel.Dock="Left" />
+                    <TextBlock x:Name="DampingVal" Text="0.992" FontSize="13" Foreground="#94A3B8" DockPanel.Dock="Right" />
+                </DockPanel>
+                <Slider x:Name="DampingSlider" Minimum="0.950" Maximum="0.999" Value="0.992" />
+
+                <!-- Wind / Idle Breeze -->
+                <DockPanel LastChildFill="False">
+                    <TextBlock Text="Idle Breeze Intensity" FontSize="13" FontWeight="SemiBold" DockPanel.Dock="Left" />
+                    <TextBlock x:Name="WindVal" Text="0.04" FontSize="13" Foreground="#94A3B8" DockPanel.Dock="Right" />
+                </DockPanel>
+                <Slider x:Name="WindSlider" Minimum="0.0" Maximum="0.15" Value="0.04" />
+
+                <CheckBox x:Name="IdleMovementCheck" Content="Enable natural ambient breeze motion" 
+                          Foreground="#F8FAFC" Margin="0,4,0,8" IsChecked="True" />
+
+                <!-- Position -->
+                <TextBlock Text="SCREEN ANCHOR POSITION" FontSize="11" FontWeight="Bold" Foreground="#38BDF8" Margin="0,12,0,0" />
+                <ComboBox x:Name="PositionComboBox" Background="#1E293B" Foreground="#0F172A" Padding="8,6" />
+
+                <CheckBox x:Name="StartupCheck" Content="Start automatically with Windows" 
+                          Foreground="#F8FAFC" Margin="0,12,0,0" />
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer Buttons -->
+        <Border Grid.Row="2" BorderThickness="0,1,0,0" BorderBrush="#334155" Padding="0,16,0,0" Margin="0,16,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Reset Defaults" Click="OnResetDefaultsClick" 
+                        Background="Transparent" Foreground="#94A3B8" BorderThickness="1" BorderBrush="#475569" 
+                        Padding="14,8" Margin="0,0,8,0" Cursor="Hand" />
+                <Button Content="Save &amp; Apply" Click="OnSaveClick" 
+                        Background="#2563EB" Foreground="#FFFFFF" FontWeight="SemiBold" BorderThickness="0" 
+                        Padding="16,8" Cursor="Hand" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
